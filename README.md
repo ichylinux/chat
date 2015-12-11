@@ -8,6 +8,7 @@
   $ cd chat
   $ bundle install
   $ rake db:create
+  $ rake db:reset
   $ rake test
   $ docker build -t yourname/chat:1.0.0 .
   $ docker push yourname/chat:1.0.0
