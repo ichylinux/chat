@@ -12,4 +12,19 @@ class UsersController < ApplicationController
     render json: {result: false, error: err.message}
   end
 
+  def destroy
+    room = Room.find(params[:room_id])
+    user = RoomUser.find_by(room_id: room.id, name: params[:id])
+    if user
+      user.destroy
+      render json: {result: true}
+    else
+      render json: {result: false, error: "User is not found!!"}
+    end
+  rescue ActiveRecord::RecordNotFound
+    render json: {result: false, error: "Room or User is not found!!"}
+  rescue ActiveRecord::RecordInvalid => err
+    render json: {result: false, error: err.message}
+  end
+
 end
