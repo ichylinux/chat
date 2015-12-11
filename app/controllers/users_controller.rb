@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     username = params[:name]
     user = RoomUser.new(room_id: room.id, name: username)
     user.save!
+
+    if Rails.env.production?
+      Magellan::Publisher.publish("worker/rooms/#{room.id}", "#{username} has entered this room.")
+    end
+
     render json: {result: true, id: user.id, name: user.name}
   rescue ActiveRecord::RecordNotFound
     render json: {result: false, error: "Room is not found!!"}
@@ -26,6 +31,11 @@ class UsersController < ApplicationController
     user = RoomUser.find_by(room_id: room.id, name: params[:id])
     if user
       user.destroy
+
+      if Rails.env.production?
+        Magellan::Publisher.publish("worker/rooms/#{room.id}", "#{user.name} has exit.")
+      end
+
       render json: {result: true}
     else
       render json: {result: false, error: "User is not found!!"}
