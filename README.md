@@ -14,6 +14,10 @@
   $ docker push yourname/chat:1.0.0
 </pre>
 
-1. **Configure on magellan**
+2. **Configure on magellan**
 
   Follow instruction at http://devcenter.magellanic-clouds.com/getting-started/tutorial/worker/rails/deployment.html
+
+3. **Try it!**
+
+  Follow instruction at http://devcenter.magellanic-clouds.com/getting-started/tutorial/worker/rails/checking_operations_worker.html
