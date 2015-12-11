@@ -1,0 +1,5 @@
+<% (1..10).each do |i| %>
+<%= i %>:
+  id: <%= i %>
+  name: '<%= "Room#{sprintf('%03d', i)}" %>'
+<% end %>
