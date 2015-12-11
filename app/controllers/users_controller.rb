@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+  def index
+    room = Room.find(params[:room_id])
+    users = RoomUser.where(room_id: room.id).all
+    users_json = users.map{|user| {id: user.id, name: user.name, login_at: user.created_at} }
+    render json: {result: true, users: users_json}
+  rescue ActiveRecord::RecordNotFound
+    render json: {result: false, error: "Room is not found!!"}
+  end
+
   def create
     room = Room.find(params[:room_id])
     username = params[:name]
