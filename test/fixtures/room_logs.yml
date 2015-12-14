@@ -1,0 +1,6 @@
+1:
+  id: 1
+  room_id: 1
+  name: Tarou
+  topic: 'worker/rooms/1/me'
+  message: 'My name is Tarou.'
