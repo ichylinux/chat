@@ -78,9 +78,11 @@ class MagellanClient
       puts "Please enter room id"
       exit(0)
     end
+
     message = (args.shift || "").dup
     target_topic = "worker/rooms/#{room_id}"
-    client.publish(target_topic, message)
+    payload = {name: name, message: message}.to_json
+    client.publish(target_topic, payload)
   end
   
   # Create and return MAGELLAN client instance.

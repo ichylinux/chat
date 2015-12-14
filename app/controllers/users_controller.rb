@@ -11,12 +11,11 @@ class UsersController < ApplicationController
 
   def create
     room = Room.find(params[:room_id])
-    username = params[:name]
-    user = RoomUser.new(room_id: room.id, name: username)
+    user = RoomUser.new(room_id: room.id, name: params[:name])
     user.save!
 
     if Rails.env.production?
-      Magellan::Publisher.publish("worker/rooms/#{room.id}", "#{username} has entered this room.")
+      Magellan::Publisher.publish("worker/rooms/#{room.id}", "#{user.name} has entered this room.")
     end
 
     render json: {result: true, id: user.id, name: user.name}
