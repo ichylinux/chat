@@ -20,7 +20,9 @@
     </form>
 
     <script>
-      var c = new chat.Client('https://nebula-001a-web.magellanic-clouds.net');
+      var c = new chat.Client({
+        index_path: '<%= room_logs_path(:room_id => Room.first.id) %>'
+      });
       c.start();
     </script>
   </body>

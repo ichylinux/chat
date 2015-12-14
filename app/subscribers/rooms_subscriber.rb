@@ -9,12 +9,11 @@ class RoomsSubscriber < Magellan::Subscriber::Base
     begin
       m = /^worker\/rooms\/([0-9]+)\/?(.*)?$/.match(topic)
       if m
-        data = JSON.parse(body)
-        username = data["username"]
-        message = data["message"]
         room_id = m[1].to_i
         room = Room.find(room_id)
-        log = RoomLog.new(room_id: room.id, username: username, topic: topic, message: message)
+
+        data = JSON.parse(body)
+        log = RoomLog.new(room_id: room.id, name: data["name"], topic: topic, message: data["message"])
         log.save!
       end
     rescue ::ActiveRecord::RecordNotFound
