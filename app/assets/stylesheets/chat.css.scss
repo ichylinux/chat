@@ -1,0 +1,17 @@
+#messages {
+  list-style-type: none;
+  margin: 0 0 40px 0;
+  padding: 0;
+
+  li {
+    padding: 5px 10px;
+    
+    &:nth-child(odd) {
+      background: #eee;
+    }
+
+    .who {
+      font-weight: bold;
+    }
+  }
+}

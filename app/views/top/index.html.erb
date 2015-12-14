@@ -1,11 +1,11 @@
 <ul id="messages"></ul>
 <form action="">
-  <input id="m" autocomplete="off" /><button>Send</button>
+  <input id="m" autocomplete="off" /><button onclick="client.send_message(); return false;">Send</button>
 </form>
 
 <script>
-  var c = new chat.Client({
-    index_path: '<%= room_logs_path(:room_id => Room.first.id) %>'
+  var client = new chat.Client({
+    index_path: '<%= room_logs_path(:room_id => Room.first.id) %>',
   });
-  c.start();
+  client.start();
 </script>

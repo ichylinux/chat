@@ -1,7 +1,8 @@
 class LogsController < ApplicationController
 
   def index
-    render :json => RoomLog.all
+    logs = RoomLog.where('created_at >= ? and created_at < ?', params[:datetime_from], params[:datetime_to])
+    render :json => logs
   end
 
   def create
