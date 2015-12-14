@@ -1,4 +1,4 @@
-equire 'json'
+require 'json'
 require 'active_record/validations'
 
 class RoomsSubscriber < Magellan::Subscriber::Base
