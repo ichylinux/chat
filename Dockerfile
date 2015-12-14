@@ -1,6 +1,7 @@
 FROM ruby:2.2
 
 ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES true
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
