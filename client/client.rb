@@ -81,7 +81,7 @@ class MagellanClient
 
     message = (args.shift || "").dup
     target_topic = "worker/rooms/#{room_id}"
-    payload = {name: name, message: message}.to_json
+    payload = {name: 'Tarou', message: message}.to_json
     client.publish(target_topic, payload)
   end
   
