@@ -8,7 +8,7 @@ chat.Client = function(options) {
   this.datetime_to = now;
 };
 
-chat.Client.prototype.start = function(callback) {
+chat.Client.prototype.start = function() {
   var next_datetime = new Date();
   var params = {
     datetime_from: this._format_datetime(this.datetime_from),
@@ -21,10 +21,6 @@ chat.Client.prototype.start = function(callback) {
     that.datetime_from = that.datetime_to;
     that.datetime_to = next_datetime;
 
-    if (callback) {
-      callback.call();
-    }
-    
     setTimeout(function() {
       that.start();
     }, 1000);
@@ -41,9 +37,7 @@ chat.Client.prototype.send_message = function() {
     
     var that = this;
     $.post(that.options.index_path, params, function() {
-      that.start(function() {
-        that._clear_text();
-      });
+      that._clear_text();
     });
   }
 };
