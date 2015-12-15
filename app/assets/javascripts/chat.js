@@ -62,12 +62,13 @@ chat.Client.prototype._render_logs = function(logs) {
 };
 
 chat.Client.prototype._format_datetime = function(datetime) {
-  var y = datetime.getFullYear();
-  var m = datetime.getMonth() + 1;
-  var d = datetime.getDate();
-  var H = datetime.getHours();
-  var M = datetime.getMinutes();
-  var S = datetime.getSeconds();
+  var query_datetime = new Date(datetime.getTime() + datetime.getTimezoneOffset() * 60000);
+  var y = query_datetime.getFullYear();
+  var m = query_datetime.getMonth() + 1;
+  var d = query_datetime.getDate();
+  var H = query_datetime.getHours();
+  var M = query_datetime.getMinutes();
+  var S = query_datetime.getSeconds();
 
   m = ('0' + m).slice(-2);
   d = ('0' + d).slice(-2);
