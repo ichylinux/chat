@@ -25,7 +25,7 @@ chat.Client.prototype.start = function(callback) {
       callback.call();
     }
     
-    that.tick = setTimeout(function() {
+    setTimeout(function() {
       that.start();
     }, 1000);
   });
@@ -39,18 +39,17 @@ chat.Client.prototype.send_message = function() {
       message: message
     };
     
-    if (this.tick) {
-      clearTimeout(this.tick);
-      this.tick = null;
-    }
-
     var that = this;
     $.post(that.options.index_path, params, function() {
       that.start(function() {
-        $('#m').val('');
+        that._clear_text();
       });
     });
   }
+};
+
+chat.Client.prototype._clear_text = function() {
+  $('#m').val('');
 };
 
 chat.Client.prototype._render_logs = function(logs) {
