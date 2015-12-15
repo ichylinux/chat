@@ -3,7 +3,7 @@ require 'test_helper'
 class LogsControllerTest < ActionController::TestCase
 
   def test_index
-    from = Time.now - 1.second
+    from = Time.now - 10.second
     to = Time.now + 1.second
 
     get :index, :room_id => Room.first.id, :datetime_from => from.strftime('%Y-%m-%d %H:%M:%S'), :datetime_to => to.strftime('%Y-%m-%d %H:%M:%S')
